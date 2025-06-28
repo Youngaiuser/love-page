@@ -251,4 +251,85 @@
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
             const resultBox = document.getElementById('resultBox');
-            const heartsContai
+            const heartsContainer = document.getElementById('heartsContainer');
+            
+            // 初始创建爱心
+            createHearts(15);
+            
+            // 点击"可以"按钮
+            yesBtn.addEventListener('click', function() {
+                resultBox.style.display = 'block';
+                noBtn.style.display = 'none';
+                
+                // 创建大量爱心
+                createHearts(50);
+                
+                // 持续创建爱心
+                const heartInterval = setInterval(function() {
+                    createHearts(10);
+                }, 1000);
+                
+                // 放大效果
+                yesBtn.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    yesBtn.style.transform = 'scale(1)';
+                }, 300);
+            });
+            
+            // 点击"不可以"按钮
+            let clickCount = 0;
+            noBtn.addEventListener('click', function() {
+                clickCount++;
+                
+                // 随机移动位置
+                const maxX = window.innerWidth - noBtn.offsetWidth - 50;
+                const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+                
+                const newX = Math.max(20, Math.min(maxX, Math.random() * maxX));
+                const newY = Math.max(20, Math.min(maxY, Math.random() * maxY));
+                
+                // 缩小按钮
+                const currentFontSize = parseFloat(getComputedStyle(noBtn).fontSize);
+                noBtn.style.fontSize = (currentFontSize * 0.7) + 'px';
+                
+                // 移动位置
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+                
+                // 放大"可以"按钮
+                const yesFontSize = parseFloat(getComputedStyle(yesBtn).fontSize);
+                yesBtn.style.fontSize = (yesFontSize * 1.2) + 'px';
+                
+                // 如果点击超过3次，强制显示结果
+                if (clickCount >= 3 || currentFontSize < 20) {
+                    noBtn.style.display = 'none';
+                    resultBox.style.display = 'block';
+                    createHearts(30);
+                }
+            });
+            
+            // 创建爱心函数
+            function createHearts(count) {
+                for (let i = 0; i < count; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 95 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                    heart.style.fontSize = (30 + Math.random() * 50) + 'px';
+                    heart.style.opacity = 0.7 + Math.random() * 0.3;
+                    heartsContainer.appendChild(heart);
+                    
+                    // 8秒后移除爱心
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, 8000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
