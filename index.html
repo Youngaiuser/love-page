@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❤️ 特别邀请 ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial Rounded MT Bold', 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .container {
+            padding: 20px;
+            max-width: 90%;
+        }
+        
+        .ip-address {
+            font-family: 'Courier New', monospace;
+            font-size: 32px;
+            color: #6a0dad;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .ip-address:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .question-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .question {
+            font-size: 36px;
+            color: #d81b60;
+            margin: 20px 0 40px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 18px 36px;
+            font-size: 26px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            min-width: 160px;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(145deg, #ff758c, #ff7eb3);
+            color: white;
+            z-index: 10;
+        }
+        
+        .btn-no {
+            background: linear-gradient(145deg, #4facfe, #00f2fe);
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .btn-no:hover {
+            transform: scale(1.05);
+        }
+        
+        .result-box {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            display: none;
+        }
+        
+        .result-text {
+            font-size: 42px;
+            color: #ff4081;
+            margin: 10px 0;
+            animation: celebrate 1.5s infinite;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .visible {
+            display: block;
+        }
+        
+        @keyframes celebrate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 28px;
+            color: #ff4081;
+            animation: float 6s linear forwards;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(110vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 初始IP地址 -->
+        <div class="ip-address" id="ipAddress">192.168.❤️.520</div>
+        
+        <!-- 问题区域（默认隐藏） -->
+        <div class="question-box hidden" id="questionBox">
+            <div class="question">可以做我女朋友吗？</div>
+            <div class="buttons">
+                <button class="btn btn-yes" id="yesBtn">可 以</button>
+                <button class="btn btn-no" id="noBtn">不可以</button>
+            </div>
+            <div class="result-box" id="resultBox">
+                <div class="result-text">❤️ 我就知道你会答应！ ❤️</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 爱心容器 -->
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <script>
+        // 确保DOM完全加载后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取元素引用
+            const ipAddress = document.getElementById('ipAddress');
+            const questionBox = document.getElementById('questionBox');
+            const yesBtn = document.getElementById('yesBtn');
+            const noBtn = document.getElementById('noBtn');
+            const resultBox = document.getElementById('resultBox');
+            const heartsContainer = document.getElementById('heartsContainer');
+            
+            // 点击IP显示问题
+            ipAddress.addEventListener('click', function() {
+                ipAddress.classList.add('hidden');
+                questionBox.classList.remove('hidden');
+                createHearts(10);
+            });
+            
+            // 点击"可以"按钮
+            yesBtn.addEventListener('click', function() {
+                resultBox.style.display = 'block';
+                noBtn.style.display = 'none';
+                createHearts(30);
+                
+                // 添加庆祝效果
+                setTimeout(() => {
+                    resultBox.classList.add('visible');
+                    createHearts(50);
+                    
+                    // 持续创建爱心
+                    setInterval(() => createHearts(5), 800);
+                }, 300);
+            });
+            
+            // 点击"不可以"按钮
+            noBtn.addEventListener('click', function() {
+                // 随机移动位置
+                const maxX = window.innerWidth - noBtn.offsetWidth - 50;
+                const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+                
+                const newX = Math.floor(Math.random() * maxX);
+                const newY = Math.floor(Math.random() * maxY);
+                
+                // 缩小按钮
+                const currentSize = parseFloat(getComputedStyle(noBtn).fontSize);
+                noBtn.style.fontSize = (currentSize * 0.75) + 'px';
+                
+                // 移动位置
+                noBtn.style.position = 'absolute';
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+                
+              
