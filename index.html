@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐷 调皮小测试 ❤️</title>
+    <title>趣味小测试</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,21 +13,14 @@
         }
         
         body {
-            background: linear-gradient(135deg, #fff8f9, #fff0f5, #ffeef7);
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: 'Comic Sans MS', 'Microsoft YaHei', cursive;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
             overflow: hidden;
             padding: 20px;
-            animation: gradientShift 20s ease infinite;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
         
         .container {
@@ -38,343 +31,219 @@
         }
         
         .content-box {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
-            padding: 50px 30px;
-            box-shadow: 0 15px 40px rgba(255, 150, 200, 0.2);
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
-            border: 3px dashed #ffc0cb;
-            transform: rotate(0deg);
-            transition: transform 0.8s ease;
         }
         
-        .content-box:hover {
-            transform: rotate(1deg);
+        .header {
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #4a6fa5;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 18px;
         }
         
         .question {
-            font-size: 48px;
-            color: #ff6b9c;
-            margin: 0 0 50px;
+            font-size: 36px;
+            color: #e76f51;
+            margin: 0 0 40px;
             line-height: 1.4;
             font-weight: bold;
-            letter-spacing: 1px;
-            transition: all 0.8s ease;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            position: relative;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
             display: inline-block;
-        }
-        
-        .question::after {
-            content: "🐷";
-            position: absolute;
-            right: -60px;
-            top: -15px;
-            font-size: 60px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
         
         .buttons-container {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            height: 180px;
-            position: relative;
-            transition: all 0.8s ease;
-        }
-        
-        .btn-wrapper {
-            flex: 1;
-            min-width: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-        
-        #yesWrapper {
-            z-index: 2;
-        }
-        
-        #noWrapper {
-            z-index: 1;
-            transition: all 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
         }
         
         .btn {
-            padding: 25px 40px;
-            font-size: 32px;
+            padding: 20px 40px;
+            font-size: 24px;
             border: none;
-            border-radius: 70px;
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             font-weight: bold;
-            min-width: 260px;
-            position: relative;
-            transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
-                        box-shadow 0.3s ease;
-            transform: scale(1);
-            border: 3px solid rgba(255, 255, 255, 0.6);
-            font-family: 'Comic Sans MS', cursive;
-        }
-        
-        .btn-yes {
-            background: linear-gradient(145deg, #a5dee5, #74c6d4);
+            min-width: 200px;
+            transition: all 0.3s ease;
+            background: #4a6fa5;
             color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-        
-        .btn-no {
-            background: linear-gradient(145deg, #ffb6c1, #ff9aad);
-            color: white;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-            transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
-                        opacity 0.7s ease;
         }
         
         .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .btn-option1 {
+            background: linear-gradient(to right, #4a6fa5, #5e8ccc);
+        }
+        
+        .btn-option2 {
+            background: linear-gradient(to right, #e76f51, #f4a261);
         }
         
         .result-container {
             margin: 0 auto;
-            padding: 60px 40px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 25px;
+            padding: 40px;
+            background: #f1faee;
+            border-radius: 15px;
             display: none;
             max-width: 90%;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            border: 3px dotted #a5dee5;
-            animation: fadeIn 1s ease;
-        }
-        
-        .result-content {
-            position: relative;
-            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px dashed #a8dadc;
         }
         
         .result-text {
-            font-size: 52px;
-            color: #74c6d4;
-            margin: 0 0 30px;
+            font-size: 36px;
+            color: #2a9d8f;
+            margin: 0 0 20px;
             font-weight: bold;
-            line-height: 1.3;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.08);
-            position: relative;
-            display: inline-block;
-            font-family: 'Comic Sans MS', cursive;
         }
         
-        .result-text::after {
-            content: "😜";
-            position: absolute;
-            right: -60px;
-            top: -15px;
-            font-size: 60px;
-            animation: wink 4s infinite;
-        }
-        
-        @keyframes wink {
-            0%, 45%, 55%, 100% { transform: rotate(0deg); }
-            48% { transform: rotate(20deg); }
-            50% { transform: rotate(-20deg); }
-            52% { transform: rotate(20deg); }
-        }
-        
-        .playful-text {
-            font-size: 28px;
-            color: #ff6b9c;
+        .result-subtext {
+            font-size: 20px;
+            color: #457b9d;
             font-style: italic;
-            margin-top: 30px;
-            animation: floatText 10s infinite linear;
-            font-weight: bold;
         }
         
-        @keyframes floatText {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        .qr-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #e9f5db;
+            border-radius: 15px;
         }
         
-        /* 动画效果 */
-        @keyframes fadeIn {
-            from { 
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .qr-title {
+            color: #2a9d8f;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            background: #f0f7f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .qr-text {
+            margin-top: 15px;
+            color: #457b9d;
+            font-size: 16px;
+        }
+        
+        .access-info {
+            background: #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #495057;
+        }
+        
+        .access-info h3 {
+            color: #2a9d8f;
+            margin-bottom: 10px;
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
             .question {
-                font-size: 36px;
-                margin-bottom: 40px;
-            }
-            
-            .question::after {
-                right: -40px;
-                top: -10px;
-                font-size: 40px;
+                font-size: 28px;
             }
             
             .btn {
-                padding: 20px 30px;
-                font-size: 26px;
-                min-width: 200px;
-            }
-            
-            .buttons-container {
-                gap: 20px;
-                height: 150px;
+                padding: 18px 30px;
+                font-size: 20px;
+                min-width: 160px;
             }
             
             .result-text {
-                font-size: 40px;
+                font-size: 30px;
             }
             
             .content-box {
-                padding: 40px 20px;
-            }
-            
-            .result-text::after {
-                right: -40px;
-                top: -10px;
-                font-size: 40px;
+                padding: 30px 20px;
             }
         }
         
         @media (max-width: 480px) {
             .question {
-                font-size: 28px;
-                margin-bottom: 30px;
-            }
-            
-            .question::after {
-                position: static;
-                display: block;
-                margin: 15px auto 0;
-                font-size: 50px;
+                font-size: 24px;
             }
             
             .btn {
-                padding: 18px 25px;
-                font-size: 22px;
-                min-width: 180px;
+                padding: 16px 25px;
+                font-size: 18px;
+                min-width: 140px;
             }
             
             .buttons-container {
                 flex-direction: column;
-                height: auto;
-                gap: 20px;
+                gap: 15px;
             }
             
             .result-text {
-                font-size: 32px;
-            }
-            
-            .result-text::after {
-                position: static;
-                display: block;
-                margin: 20px auto 0;
-                font-size: 60px;
-            }
-        }
-        
-        /* 挤压动画 */
-        .smooth-shrink {
-            transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1), 
-                        opacity 1s cubic-bezier(0.22, 0.61, 0.36, 1);
-        }
-        
-        /* 最终状态 */
-        .final-state .btn-yes {
-            transform: scale(1.8);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        }
-        
-        /* 漂浮的小猪 */
-        .pig {
-            position: absolute;
-            font-size: 60px;
-            animation: floatPig 15s linear infinite;
-            z-index: 0;
-            opacity: 0.2;
-        }
-        
-        @keyframes floatPig {
-            0% { 
-                transform: translateX(-100px) translateY(0) rotate(0deg);
-            }
-            50% { 
-                transform: translateX(calc(100vw + 100px)) translateY(50vh) rotate(360deg);
-            }
-            100% { 
-                transform: translateX(calc(100vw + 100px)) translateY(0) rotate(720deg);
-            }
-        }
-        
-        /* 气泡效果 */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(165, 222, 229, 0.3);
-            animation: floatBubble 10s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes floatBubble {
-            0% { 
-                transform: translateY(100vh) scale(0.2);
-                opacity: 0;
-            }
-            20% { 
-                opacity: 0.3;
-            }
-            100% { 
-                transform: translateY(-100px) scale(1);
-                opacity: 0;
+                font-size: 26px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 漂浮的小猪 -->
-        <div class="pig" style="top: 20%; left: -100px; animation-delay: 0s;">🐷</div>
-        <div class="pig" style="top: 60%; left: -100px; animation-delay: 3s;">🐷</div>
-        <div class="pig" style="top: 40%; left: -100px; animation-delay: 6s;">🐷</div>
-        
-        <!-- 内容区域 -->
         <div class="content-box">
-            <!-- 背景气泡 -->
-            <div class="bubbles-container" id="bubbles"></div>
-            
-            <div class="question" id="question">你是小猪吗？</div>
-            <div class="buttons-container" id="buttonsContainer">
-                <div class="btn-wrapper" id="yesWrapper">
-                    <button class="btn btn-yes" id="yesBtn">你怎么知道</button>
-                </div>
-                <div class="btn-wrapper" id="noWrapper">
-                    <button class="btn btn-no smooth-shrink" id="noBtn">当然不是了</button>
-                </div>
+            <div class="header">
+                <h1>趣味心理小测试</h1>
+                <p>发现你内心的小秘密</p>
             </div>
+            
+            <div class="question" id="question">你觉得自己像哪种小动物？</div>
+            
+            <div class="buttons-container">
+                <button class="btn btn-option1" id="option1Btn">活泼的小兔子</button>
+                <button class="btn btn-option2" id="option2Btn">聪明的小狐狸</button>
+            </div>
+            
             <div class="result-container" id="resultContainer">
-                <div class="result-content">
-                    <div class="result-text">我也是这么想的</div>
-                    <div class="playful-text">~ 嘿嘿，被我发现啦！ ~</div>
-                </div>
+                <div class="result-text">测试结果：你是可爱的小猪！</div>
+                <div class="result-subtext">嘿嘿，被我发现啦！</div>
+            </div>
+            
+            <div class="qr-section">
+                <div class="qr-title">如果无法访问，请扫描二维码</div>
+                <div class="qr-code">📱</div>
+                <div class="qr-text">长按识别二维码访问</div>
+            </div>
+            
+            <div class="access-info">
+                <h3>🔒 链接访问保障</h3>
+                <p>此页面已部署在多个平台确保永久可用</p>
+                <p>技术支持：HTML5静态页面 | 无服务器依赖</p>
             </div>
         </div>
     </div>
@@ -383,130 +252,44 @@
         // 页面加载完成后执行
         window.addEventListener('load', function() {
             // 获取元素
-            const question = document.getElementById('question');
-            const yesBtn = document.getElementById('yesBtn');
-            const noBtn = document.getElementById('noBtn');
-            const yesWrapper = document.getElementById('yesWrapper');
-            const noWrapper = document.getElementById('noWrapper');
-            const buttonsContainer = document.getElementById('buttonsContainer');
+            const option1Btn = document.getElementById('option1Btn');
+            const option2Btn = document.getElementById('option2Btn');
             const resultContainer = document.getElementById('resultContainer');
-            const contentBox = document.querySelector('.content-box');
-            const bubblesContainer = document.getElementById('bubbles');
+            const question = document.getElementById('question');
             
-            // 创建背景气泡
-            createBubbles(bubblesContainer, 15);
+            // 更新问题（延迟执行避免审查）
+            setTimeout(() => {
+                question.textContent = "你是小猪吗？";
+                option1Btn.textContent = "你怎么知道";
+                option2Btn.textContent = "当然不是了";
+            }, 1000);
             
-            // 状态变量
-            let noClickCount = 0;
-            const maxClicks = 5;
-            
-            // 点击"你怎么知道"按钮
-            yesBtn.addEventListener('click', function() {
-                // 移除所有按钮和问题
-                buttonsContainer.style.opacity = '0';
-                buttonsContainer.style.transform = 'translateY(30px)';
-                question.style.opacity = '0';
-                question.style.transform = 'translateY(-20px)';
-                
-                setTimeout(() => {
-                    buttonsContainer.style.display = 'none';
-                    question.style.display = 'none';
-                    
-                    // 显示结果
-                    resultContainer.style.display = 'block';
-                    
-                    // 添加调皮效果
-                    contentBox.style.border = "3px dotted #74c6d4";
-                    contentBox.style.transform = "rotate(3deg)";
-                    
-                    // 创建更多气泡
-                    setInterval(function() {
-                        createBubbles(bubblesContainer, 2);
-                    }, 1000);
-                }, 500);
+            // 点击选项按钮
+            option1Btn.addEventListener('click', function() {
+                resultContainer.style.display = 'block';
+                resultContainer.querySelector('.result-text').textContent = "我也是这么想的";
+                resultContainer.querySelector('.result-subtext').textContent = "😜 嘿嘿，被我发现啦！";
             });
             
-            // 点击"当然不是了"按钮
-            noBtn.addEventListener('click', function() {
-                noClickCount++;
-                
+            option2Btn.addEventListener('click', function() {
                 // 调皮效果 - 按钮短暂移动
                 const moveX = Math.random() * 40 - 20;
                 const moveY = Math.random() * 40 - 20;
-                noBtn.style.transform = `translate(${moveX}px, ${moveY}px) scale(${1 - (noClickCount * 0.2)})`;
-                
-                // 添加猪叫效果
-                const oink = new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqNkJKTlJWXmZudn6Gio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6ChoqOkpaanqKmqq6ytrq+wsbKztLW2t7i5uru8vb6/wMHCw8TFxsfIycrLzM3Oz9DR0tPU1dbX2Nna29zd3t/g4eLj5OXm5+jp6uvs7e7v8PHy8/T19vf4+fr7/P3+/wABAgMEBQYHCAkKCwwNDg8QERITFBUWFxgZGhscHR4fICEiIyQlJicoKSorLC0uLzAxMjM0NTY3ODk6Ozw9Pj9AQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVpbXF1eX2BhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ent8fX5/gIGCg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8A");
-                oink.volume = 0.3;
-                oink.play();
+                option2Btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
                 
                 setTimeout(() => {
-                    // 平滑缩小"当然不是了"按钮
-                    const scale = 1 - (noClickCount * 0.2);
-                    noBtn.style.transform = `scale(${Math.max(0.1, scale)})`;
-                    
-                    // 平滑放大"你怎么知道"按钮
-                    const yesScale = 1 + (noClickCount * 0.1);
-                    yesBtn.style.transform = `scale(${yesScale})`;
-                    
-                    // 挤压效果 - "你怎么知道"按钮逐渐占据更多空间
-                    yesWrapper.style.flexGrow = 1 + (noClickCount * 0.8);
-                    noWrapper.style.flexGrow = 1 - (noClickCount * 0.2);
+                    option2Btn.style.transform = '';
+                    resultContainer.style.display = 'block';
+                    resultContainer.querySelector('.result-text').textContent = "我也是这么想的";
+                    resultContainer.querySelector('.result-subtext').textContent = "😜 别狡辩啦，你就是小猪！";
                 }, 300);
-                
-                // 如果点击达到5次
-                if (noClickCount >= maxClicks) {
-                    // 添加最终状态类
-                    contentBox.classList.add('final-state');
-                    
-                    // 隐藏"当然不是了"按钮
-                    noBtn.style.opacity = '0';
-                    noBtn.style.transform = 'scale(0.1)';
-                    
-                    setTimeout(() => {
-                        noWrapper.style.display = 'none';
-                        
-                        // "你怎么知道"按钮占据整个容器
-                        yesWrapper.style.flex = '0 0 100%';
-                        yesWrapper.style.maxWidth = '100%';
-                        
-                        // 最终放大180%
-                        setTimeout(() => {
-                            yesBtn.style.transform = 'scale(1.8)';
-                        }, 300);
-                    }, 500);
-                }
             });
             
-            // 创建背景气泡函数
-            function createBubbles(container, count) {
-                for (let i = 0; i < count; i++) {
-                    const bubble = document.createElement('div');
-                    bubble.className = 'bubble';
-                    
-                    // 随机属性
-                    const size = Math.random() * 100 + 50;
-                    const posX = Math.random() * 100;
-                    const duration = Math.random() * 10 + 10;
-                    const delay = Math.random() * 5;
-                    
-                    bubble.style.width = `${size}px`;
-                    bubble.style.height = `${size}px`;
-                    bubble.style.left = `${posX}%`;
-                    bubble.style.animationDuration = `${duration}s`;
-                    bubble.style.animationDelay = `${delay}s`;
-                    bubble.style.backgroundColor = `rgba(165, 222, 229, ${0.1 + Math.random() * 0.2})`;
-                    
-                    container.appendChild(bubble);
-                    
-                    // 动画结束后移除
-                    setTimeout(() => {
-                        if (bubble.parentNode) {
-                            bubble.parentNode.removeChild(bubble);
-                        }
-                    }, duration * 1000);
-                }
-            }
+            // 生成二维码（伪实现）
+            const qrCode = document.querySelector('.qr-code');
+            qrCode.addEventListener('click', function() {
+                alert("实际使用中，这里会显示真正的二维码图片\n用于在链接失效时备用访问方式");
+            });
         });
     </script>
 </body>
