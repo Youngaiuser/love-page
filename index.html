@@ -7,6 +7,8 @@
     <style>
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             user-select: none;
         }
         
@@ -15,75 +17,65 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
             font-family: 'Arial Rounded MT Bold', 'Microsoft YaHei', sans-serif;
             overflow: hidden;
-            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s ease;
         }
         
         .container {
-            padding: 20px;
-            max-width: 90%;
-        }
-        
-        .ip-address {
-            font-family: 'Courier New', monospace;
-            font-size: 32px;
-            color: #6a0dad;
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .ip-address:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 600px;
         }
         
         .question-box {
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            max-width: 500px;
+            border-radius: 25px;
+            padding: 50px 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
             margin: 0 auto;
-            display: none; /* 初始隐藏 */
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .question {
-            font-size: 36px;
+            font-size: 42px;
             color: #d81b60;
-            margin: 20px 0 40px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 0 0 50px;
+            line-height: 1.4;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
         }
         
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
         
         .btn {
-            padding: 18px 36px;
-            font-size: 26px;
+            padding: 22px 50px;
+            font-size: 32px;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             font-weight: bold;
-            min-width: 160px;
+            min-width: 200px;
+            position: relative;
+            z-index: 10;
         }
         
         .btn-yes {
             background: linear-gradient(145deg, #ff758c, #ff7eb3);
             color: white;
-            z-index: 10;
+            transform: scale(1.05);
         }
         
         .btn-no {
@@ -91,41 +83,57 @@
             color: white;
         }
         
-        .btn-yes:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        .btn-yes:hover, .btn-yes:focus {
+            transform: scale(1.15);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
         
-        .btn-no:hover {
-            transform: scale(1.05);
+        .btn-no:hover, .btn-no:focus {
+            transform: scale(1.08);
         }
         
         .result-box {
             margin-top: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
             display: none;
+            animation: fadeIn 1s ease;
         }
         
         .result-text {
-            font-size: 42px;
+            font-size: 46px;
             color: #ff4081;
-            margin: 10px 0;
+            margin: 0;
             animation: celebrate 1.5s infinite;
         }
         
-        .hidden {
-            display: none !important;
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
-        .visible {
-            display: block;
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
         @keyframes celebrate {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
         
@@ -137,14 +145,16 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
+            overflow: hidden;
         }
         
         .heart {
             position: absolute;
-            font-size: 28px;
+            font-size: 36px;
             color: #ff4081;
-            animation: float 6s linear forwards;
+            animation: float 8s linear forwards;
             opacity: 0;
+            z-index: 1;
         }
         
         @keyframes float {
@@ -153,19 +163,73 @@
                 opacity: 1;
             }
             100% { 
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-150px) rotate(360deg);
                 opacity: 0;
             }
         }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .question {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+            
+            .btn {
+                padding: 20px 40px;
+                font-size: 28px;
+                min-width: 180px;
+            }
+            
+            .buttons {
+                gap: 25px;
+            }
+            
+            .result-text {
+                font-size: 38px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .question {
+                font-size: 28px;
+            }
+            
+            .btn {
+                padding: 18px 30px;
+                font-size: 24px;
+                min-width: 160px;
+            }
+            
+            .result-text {
+                font-size: 32px;
+            }
+        }
+        
+        /* 装饰元素 */
+        .corner-heart {
+            position: absolute;
+            font-size: 100px;
+            color: rgba(255, 64, 129, 0.15);
+            z-index: 0;
+        }
+        
+        .top-left { top: 20px; left: 20px; }
+        .top-right { top: 20px; right: 20px; }
+        .bottom-left { bottom: 20px; left: 20px; }
+        .bottom-right { bottom: 20px; right: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 初始IP地址 -->
-        <div class="ip-address" id="ipAddress">192.168.❤️.520</div>
-        
-        <!-- 问题区域（默认隐藏） -->
-        <div class="question-box" id="questionBox">
+        <!-- 直接显示问题区域 -->
+        <div class="question-box">
+            <!-- 装饰爱心 -->
+            <div class="corner-heart top-left">❤️</div>
+            <div class="corner-heart top-right">❤️</div>
+            <div class="corner-heart bottom-left">❤️</div>
+            <div class="corner-heart bottom-right">❤️</div>
+            
             <div class="question">可以做我女朋友吗？</div>
             <div class="buttons">
                 <button class="btn btn-yes" id="yesBtn">可 以</button>
@@ -181,55 +245,10 @@
     <div class="hearts-container" id="heartsContainer"></div>
     
     <script>
-        // 确保DOM完全加载后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取元素引用
-            const ipAddress = document.getElementById('ipAddress');
-            const questionBox = document.getElementById('questionBox');
+        // 页面加载完成后执行
+        window.addEventListener('load', function() {
+            // 获取元素
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
             const resultBox = document.getElementById('resultBox');
-            const heartsContainer = document.getElementById('heartsContainer');
-            
-            // 初始状态：只显示IP地址
-            questionBox.style.display = 'none';
-            resultBox.style.display = 'none';
-            
-            // 点击IP显示问题
-            ipAddress.addEventListener('click', function() {
-                ipAddress.style.display = 'none';
-                questionBox.style.display = 'block';
-                createHearts(10);
-            });
-            
-            // 点击"可以"按钮
-            yesBtn.addEventListener('click', function() {
-                resultBox.style.display = 'block';
-                noBtn.style.display = 'none';
-                createHearts(30);
-                
-                // 添加庆祝效果
-                setTimeout(() => {
-                    createHearts(50);
-                    
-                    // 持续创建爱心
-                    setInterval(() => createHearts(5), 800);
-                }, 300);
-            });
-            
-            // 点击"不可以"按钮
-            noBtn.addEventListener('click', function() {
-                // 随机移动位置
-                const maxX = window.innerWidth - noBtn.offsetWidth - 50;
-                const maxY = window.innerHeight - noBtn.offsetHeight - 50;
-                
-                const newX = Math.floor(Math.random() * maxX);
-                const newY = Math.floor(Math.random() * maxY);
-                
-                // 缩小按钮
-                const currentSize = parseFloat(getComputedStyle(noBtn).fontSize);
-                noBtn.style.fontSize = (currentSize * 0.75) + 'px';
-                
-                // 移动位置
-                noBtn.style.position = 'absolute';
-                noBt
+            const heartsContai
