@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 今晚月色真美 </title>
+    <title>❤️ 心动选择 ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -13,7 +13,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #ffdde1, #f9c6d1, #ffafbd);
+            background: linear-gradient(135deg, #f5f9ff, #e6f7ff, #f0f8ff);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,7 +21,13 @@
             font-family: 'Arial Rounded MT Bold', 'Microsoft YaHei', sans-serif;
             overflow: hidden;
             padding: 20px;
-            animation: fadeIn 1.2s ease-out;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .container {
@@ -32,32 +38,32 @@
         }
         
         .content-box {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 25px;
             padding: 50px 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
         
         .question {
             font-size: 42px;
-            color: #e91e63;
+            color: #ff6b9c;
             margin: 0 0 50px;
             line-height: 1.4;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
             font-weight: 600;
             letter-spacing: 0.5px;
             transition: all 0.8s ease;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         
         .buttons-container {
             display: flex;
             justify-content: center;
             gap: 30px;
-            height: 150px;
+            height: 180px;
             position: relative;
             transition: all 0.8s ease;
         }
@@ -81,29 +87,29 @@
         }
         
         .btn {
-            padding: 22px 50px;
-            font-size: 32px;
+            padding: 25px 55px;
+            font-size: 36px;
             border: none;
-            border-radius: 60px;
+            border-radius: 70px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
             font-weight: bold;
-            min-width: 200px;
+            min-width: 240px;
             position: relative;
             transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
                         box-shadow 0.3s ease;
             transform: scale(1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
         
         .btn-yes {
-            background: linear-gradient(145deg, #ff7eb3, #ff758c);
+            background: linear-gradient(145deg, #ff8cc6, #ff6b9c);
             color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
         .btn-no {
-            background: linear-gradient(145deg, #6ecbf5, #4facfe);
+            background: linear-gradient(145deg, #7ec8ff, #5ab0ff);
             color: white;
             text-shadow: 0 1px 2px rgba(0,0,0,0.2);
             transition: transform 1s cubic-bezier(0.22, 0.61, 0.36, 1), 
@@ -111,33 +117,70 @@
         }
         
         .btn-yes:hover {
-            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
-            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: scale(1.05);
         }
         
         .btn-no:hover {
-            box-shadow: 0 12px 25px rgba(0,0,0,0.18);
-            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: scale(1.05);
         }
         
         .result-container {
             margin: 0 auto;
-            padding: 50px 40px;
+            padding: 60px 40px;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+            border-radius: 25px;
             display: none;
             max-width: 90%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            animation: fadeIn 1.2s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-content {
+            position: relative;
+            z-index: 2;
         }
         
         .result-text {
-            font-size: 48px;
+            font-size: 52px;
             color: #ff4081;
-            margin: 0;
+            margin: 0 0 30px;
             font-weight: bold;
-            text-shadow: 0 3px 6px rgba(0,0,0,0.08);
             line-height: 1.3;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.08);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .result-text::after {
+            content: "😜";
+            position: absolute;
+            right: -60px;
+            top: -15px;
+            font-size: 60px;
+            animation: wink 4s infinite;
+        }
+        
+        @keyframes wink {
+            0%, 45%, 55%, 100% { transform: rotate(0deg); }
+            48% { transform: rotate(20deg); }
+            50% { transform: rotate(-20deg); }
+            52% { transform: rotate(20deg); }
+        }
+        
+        .playful-text {
+            font-size: 28px;
+            color: #ff6b9c;
+            font-style: italic;
+            margin-top: 30px;
+            animation: floatText 8s infinite linear;
+        }
+        
+        @keyframes floatText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
         
         /* 动画效果 */
@@ -152,38 +195,6 @@
             }
         }
         
-        @keyframes float {
-            0% { 
-                transform: translateY(110vh) rotate(0deg);
-                opacity: 0.8;
-            }
-            100% { 
-                transform: translateY(-150px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .hearts-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-        
-        .heart {
-            position: absolute;
-            font-size: 32px;
-            color: #ff4081;
-            animation: float 10s linear forwards;
-            opacity: 0;
-            z-index: 1;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .question {
@@ -192,22 +203,28 @@
             }
             
             .btn {
-                padding: 20px 35px;
-                font-size: 28px;
-                min-width: 160px;
+                padding: 22px 40px;
+                font-size: 30px;
+                min-width: 200px;
             }
             
             .buttons-container {
                 gap: 20px;
-                height: 130px;
+                height: 150px;
             }
             
             .result-text {
-                font-size: 38px;
+                font-size: 42px;
             }
             
             .content-box {
                 padding: 40px 20px;
+            }
+            
+            .result-text::after {
+                right: -50px;
+                top: -10px;
+                font-size: 50px;
             }
         }
         
@@ -218,9 +235,9 @@
             }
             
             .btn {
-                padding: 18px 25px;
-                font-size: 24px;
-                min-width: 140px;
+                padding: 20px 30px;
+                font-size: 26px;
+                min-width: 160px;
             }
             
             .buttons-container {
@@ -230,7 +247,20 @@
             }
             
             .result-text {
-                font-size: 32px;
+                font-size: 36px;
+            }
+            
+            .result-text::after {
+                position: static;
+                display: block;
+                margin: 20px auto 0;
+                font-size: 60px;
+                animation: bounce 2s infinite;
+            }
+            
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-20px); }
             }
         }
         
@@ -242,8 +272,56 @@
         
         /* 最终状态 */
         .final-state .btn-yes {
-            transform: scale(1.5); /* 放大150% */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: scale(1.8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        /* 现代粒子效果 */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: #ffd1e4;
+            animation: float 15s linear infinite;
+        }
+        
+        @keyframes float {
+            0% { 
+                transform: translateY(100%) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6b9c;
+            animation: confettiFall 5s linear forwards;
+        }
+        
+        @keyframes confettiFall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -251,6 +329,8 @@
     <div class="container">
         <!-- 内容区域 -->
         <div class="content-box">
+            <div class="particles" id="particles"></div>
+            
             <div class="question" id="question">可以做我女朋友吗？</div>
             <div class="buttons-container" id="buttonsContainer">
                 <div class="btn-wrapper" id="yesWrapper">
@@ -261,13 +341,14 @@
                 </div>
             </div>
             <div class="result-container" id="resultContainer">
-                <div class="result-text">❤️ 我就知道你会答应！ ❤️</div>
+                <div class="particles" id="resultParticles"></div>
+                <div class="result-content">
+                    <div class="result-text">我就知道你会答应</div>
+                    <div class="playful-text">~ 你做出了最聪明的选择！ ~</div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <!-- 爱心容器 -->
-    <div class="hearts-container" id="heartsContainer"></div>
     
     <script>
         // 页面加载完成后执行
@@ -280,15 +361,16 @@
             const noWrapper = document.getElementById('noWrapper');
             const buttonsContainer = document.getElementById('buttonsContainer');
             const resultContainer = document.getElementById('resultContainer');
-            const heartsContainer = document.getElementById('heartsContainer');
             const contentBox = document.querySelector('.content-box');
+            const particlesContainer = document.getElementById('particles');
+            const resultParticlesContainer = document.getElementById('resultParticles');
+            
+            // 创建背景粒子
+            createParticles(particlesContainer, 15);
             
             // 状态变量
             let noClickCount = 0;
             const maxClicks = 5;
-            
-            // 初始创建爱心
-            createHearts(8);
             
             // 点击"可以"按钮
             yesBtn.addEventListener('click', function() {
@@ -305,13 +387,13 @@
                     // 显示结果
                     resultContainer.style.display = 'block';
                     
-                    // 创建大量爱心
-                    createHearts(25);
+                    // 创建庆祝粒子
+                    createConfetti(resultParticlesContainer, 50);
                     
-                    // 持续创建爱心
+                    // 持续创建粒子
                     setInterval(function() {
-                        createHearts(2);
-                    }, 800);
+                        createConfetti(resultParticlesContainer, 3);
+                    }, 1000);
                 }, 500);
             });
             
@@ -319,17 +401,22 @@
             noBtn.addEventListener('click', function() {
                 noClickCount++;
                 
-                // 平滑缩小"不可以"按钮
-                const scale = 1 - (noClickCount * 0.2);
-                noBtn.style.transform = `scale(${Math.max(0.1, scale)})`;
+                // 调皮效果 - 按钮短暂移动
+                noBtn.style.transform = `translate(${Math.random() * 20 - 10}px, ${Math.random() * 20 - 10}px) scale(${1 - (noClickCount * 0.2)})`;
                 
-                // 平滑放大"可以"按钮
-                const yesScale = 1 + (noClickCount * 0.1);
-                yesBtn.style.transform = `scale(${yesScale})`;
-                
-                // 挤压效果 - "可以"按钮逐渐占据更多空间
-                yesWrapper.style.flexGrow = 1 + (noClickCount * 0.8);
-                noWrapper.style.flexGrow = 1 - (noClickCount * 0.2);
+                setTimeout(() => {
+                    // 平滑缩小"不可以"按钮
+                    const scale = 1 - (noClickCount * 0.2);
+                    noBtn.style.transform = `scale(${Math.max(0.1, scale)})`;
+                    
+                    // 平滑放大"可以"按钮
+                    const yesScale = 1 + (noClickCount * 0.1);
+                    yesBtn.style.transform = `scale(${yesScale})`;
+                    
+                    // 挤压效果 - "可以"按钮逐渐占据更多空间
+                    yesWrapper.style.flexGrow = 1 + (noClickCount * 0.8);
+                    noWrapper.style.flexGrow = 1 - (noClickCount * 0.2);
+                }, 300);
                 
                 // 如果点击达到5次
                 if (noClickCount >= maxClicks) {
@@ -347,34 +434,65 @@
                         yesWrapper.style.flex = '0 0 100%';
                         yesWrapper.style.maxWidth = '100%';
                         
-                        // 最终放大150%
+                        // 最终放大180%
                         setTimeout(() => {
-                            yesBtn.style.transform = 'scale(1.5)';
+                            yesBtn.style.transform = 'scale(1.8)';
                         }, 300);
                     }, 500);
                 }
             });
             
-            // 创建爱心函数
-            function createHearts(count) {
+            // 创建背景粒子函数
+            function createParticles(container, count) {
                 for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    
+                    // 随机属性
+                    const size = Math.random() * 10 + 5;
+                    const posX = Math.random() * 100;
+                    const duration = Math.random() * 10 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${posX}%`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+                    particle.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 85%)`;
+                    
+                    container.appendChild(particle);
+                }
+            }
+            
+            // 创建彩色纸屑函数
+            function createConfetti(container, count) {
+                for (let i = 0; i < count; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    
+                    // 随机属性
+                    const colors = ['#ff6b9c', '#7ec8ff', '#a5dee5', '#ffd166', '#06d6a0'];
+                    const left = Math.random() * 100;
+                    const duration = Math.random() * 3 + 2;
+                    const delay = Math.random() * 2;
+                    const size = Math.random() * 10 + 5;
+                    
+                    confetti.style.width = `${size}px`;
+                    confetti.style.height = `${size}px`;
+                    confetti.style.left = `${left}%`;
+                    confetti.style.animationDuration = `${duration}s`;
+                    confetti.style.animationDelay = `${delay}s`;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    container.appendChild(confetti);
+                    
+                    // 动画结束后移除
                     setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.className = 'heart';
-                        heart.innerHTML = '❤️';
-                        heart.style.left = Math.random() * 95 + 'vw';
-                        heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
-                        heart.style.fontSize = (25 + Math.random() * 35) + 'px';
-                        heart.style.opacity = 0.6 + Math.random() * 0.4;
-                        heartsContainer.appendChild(heart);
-                        
-                        // 10秒后移除爱心
-                        setTimeout(() => {
-                            if (heart.parentNode) {
-                                heart.parentNode.removeChild(heart);
-                            }
-                        }, 10000);
-                    }, i * 150); // 错开创建时间
+                        if (confetti.parentNode) {
+                            confetti.parentNode.removeChild(confetti);
+                        }
+                    }, duration * 1000);
                 }
             }
         });
