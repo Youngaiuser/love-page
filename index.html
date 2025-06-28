@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>❤️ 特别邀请 ❤️</title>
+    <title>❤️ 你会答应吗 ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -26,7 +26,8 @@
         
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
+            text-align: center;
         }
         
         .question-box {
@@ -34,8 +35,6 @@
             border-radius: 25px;
             padding: 50px 30px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-            margin: 0 auto;
-            text-align: center;
             position: relative;
             overflow: hidden;
             animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -47,15 +46,24 @@
             margin: 0 0 50px;
             line-height: 1.4;
             text-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            animation: pulse 2s infinite;
         }
         
-        .buttons {
+        .buttons-container {
             display: flex;
             justify-content: center;
             gap: 40px;
             flex-wrap: wrap;
             margin-bottom: 20px;
+            height: 150px; /* 固定高度防止布局跳动 */
+        }
+        
+        .btn-wrapper {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         .btn {
@@ -64,36 +72,38 @@
             border: none;
             border-radius: 60px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             font-weight: bold;
             min-width: 200px;
             position: relative;
             z-index: 10;
+            display: block;
+            transform-origin: center;
         }
         
         .btn-yes {
             background: linear-gradient(145deg, #ff758c, #ff7eb3);
             color: white;
-            transform: scale(1.05);
+            transform: scale(1);
         }
         
         .btn-no {
             background: linear-gradient(145deg, #4facfe, #00f2fe);
             color: white;
+            transform: scale(1);
         }
         
         .btn-yes:hover, .btn-yes:focus {
-            transform: scale(1.15);
             box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
         
         .btn-no:hover, .btn-no:focus {
-            transform: scale(1.08);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
         }
         
-        .result-box {
-            margin-top: 40px;
+        .result-container {
+            margin-top: 30px;
             padding: 25px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
@@ -106,6 +116,8 @@
             color: #ff4081;
             margin: 0;
             animation: celebrate 1.5s infinite;
+            font-weight: bold;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         /* 动画效果 */
@@ -125,15 +137,9 @@
             }
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
         @keyframes celebrate {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
         
@@ -169,9 +175,9 @@
         }
         
         /* 响应式设计 */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .question {
-                font-size: 32px;
+                font-size: 34px;
                 margin-bottom: 40px;
             }
             
@@ -181,8 +187,9 @@
                 min-width: 180px;
             }
             
-            .buttons {
-                gap: 25px;
+            .buttons-container {
+                gap: 30px;
+                height: 130px;
             }
             
             .result-text {
@@ -193,12 +200,23 @@
         @media (max-width: 480px) {
             .question {
                 font-size: 28px;
+                margin-bottom: 30px;
             }
             
             .btn {
                 padding: 18px 30px;
                 font-size: 24px;
                 min-width: 160px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                height: auto;
+                gap: 20px;
+            }
+            
+            .btn-wrapper {
+                min-width: 100%;
             }
             
             .result-text {
@@ -209,20 +227,37 @@
         /* 装饰元素 */
         .corner-heart {
             position: absolute;
-            font-size: 100px;
+            font-size: 80px;
             color: rgba(255, 64, 129, 0.15);
             z-index: 0;
         }
         
-        .top-left { top: 20px; left: 20px; }
-        .top-right { top: 20px; right: 20px; }
-        .bottom-left { bottom: 20px; left: 20px; }
-        .bottom-right { bottom: 20px; right: 20px; }
+        .top-left { top: 15px; left: 15px; }
+        .top-right { top: 15px; right: 15px; }
+        .bottom-left { bottom: 15px; left: 15px; }
+        .bottom-right { bottom: 15px; right: 15px; }
+        
+        /* 点击计数器 */
+        .click-counter {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 18px;
+            color: #d81b60;
+            font-weight: bold;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 直接显示问题区域 -->
+        <!-- 点击计数器 -->
+        <div class="click-counter" id="clickCounter">点击次数: 0/5</div>
+        
+        <!-- 问题区域 -->
         <div class="question-box">
             <!-- 装饰爱心 -->
             <div class="corner-heart top-left">❤️</div>
@@ -231,12 +266,16 @@
             <div class="corner-heart bottom-right">❤️</div>
             
             <div class="question">可以做我女朋友吗？</div>
-            <div class="buttons">
-                <button class="btn btn-yes" id="yesBtn">可 以</button>
-                <button class="btn btn-no" id="noBtn">不可以</button>
+            <div class="buttons-container">
+                <div class="btn-wrapper" id="yesWrapper">
+                    <button class="btn btn-yes" id="yesBtn">可 以</button>
+                </div>
+                <div class="btn-wrapper" id="noWrapper">
+                    <button class="btn btn-no" id="noBtn">不可以</button>
+                </div>
             </div>
-            <div class="result-box" id="resultBox">
-                <div class="result-text">❤️ 我就知道你会答应！ ❤️</div>
+            <div class="result-container" id="resultContainer">
+                <div class="result-text">❤️ 我就知道你会答应！😉 ❤️</div>
             </div>
         </div>
     </div>
@@ -250,64 +289,93 @@
             // 获取元素
             const yesBtn = document.getElementById('yesBtn');
             const noBtn = document.getElementById('noBtn');
-            const resultBox = document.getElementById('resultBox');
+            const yesWrapper = document.getElementById('yesWrapper');
+            const noWrapper = document.getElementById('noWrapper');
+            const resultContainer = document.getElementById('resultContainer');
             const heartsContainer = document.getElementById('heartsContainer');
+            const clickCounter = document.getElementById('clickCounter');
+            
+            // 状态变量
+            let noClickCount = 0;
+            const maxClicks = 5;
+            
+            // 显示点击计数器
+            clickCounter.style.display = 'block';
+            updateClickCounter();
             
             // 初始创建爱心
-            createHearts(15);
+            createHearts(10);
             
             // 点击"可以"按钮
             yesBtn.addEventListener('click', function() {
-                resultBox.style.display = 'block';
+                // 隐藏所有按钮
+                yesBtn.style.display = 'none';
                 noBtn.style.display = 'none';
                 
+                // 显示结果
+                resultContainer.style.display = 'block';
+                
                 // 创建大量爱心
-                createHearts(50);
+                createHearts(30);
                 
                 // 持续创建爱心
                 const heartInterval = setInterval(function() {
-                    createHearts(10);
-                }, 1000);
+                    createHearts(5);
+                }, 800);
                 
                 // 放大效果
-                yesBtn.style.transform = 'scale(1.2)';
+                yesWrapper.style.transform = 'scale(1.1)';
                 setTimeout(() => {
-                    yesBtn.style.transform = 'scale(1)';
+                    yesWrapper.style.transform = 'scale(1)';
                 }, 300);
             });
             
             // 点击"不可以"按钮
-            let clickCount = 0;
             noBtn.addEventListener('click', function() {
-                clickCount++;
+                noClickCount++;
+                updateClickCounter();
                 
-                // 随机移动位置
-                const maxX = window.innerWidth - noBtn.offsetWidth - 50;
-                const maxY = window.innerHeight - noBtn.offsetHeight - 50;
+                // 缩小"不可以"按钮 (缩小到80%)
+                const currentNoScale = 1 - (noClickCount * 0.2);
+                noBtn.style.transform = `scale(${Math.max(0.1, currentNoScale)})`;
                 
-                const newX = Math.max(20, Math.min(maxX, Math.random() * maxX));
-                const newY = Math.max(20, Math.min(maxY, Math.random() * maxY));
+                // 放大"可以"按钮 (放大到120%)
+                const currentYesScale = 1 + (noClickCount * 0.2);
+                yesBtn.style.transform = `scale(${currentYesScale})`;
                 
-                // 缩小按钮
-                const currentFontSize = parseFloat(getComputedStyle(noBtn).fontSize);
-                noBtn.style.fontSize = (currentFontSize * 0.7) + 'px';
+                // 添加抖动效果
+                noBtn.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    noBtn.style.animation = '';
+                }, 500);
                 
-                // 移动位置
-                noBtn.style.position = 'absolute';
-                noBtn.style.left = newX + 'px';
-                noBtn.style.top = newY + 'px';
-                
-                // 放大"可以"按钮
-                const yesFontSize = parseFloat(getComputedStyle(yesBtn).fontSize);
-                yesBtn.style.fontSize = (yesFontSize * 1.2) + 'px';
-                
-                // 如果点击超过3次，强制显示结果
-                if (clickCount >= 3 || currentFontSize < 20) {
-                    noBtn.style.display = 'none';
-                    resultBox.style.display = 'block';
-                    createHearts(30);
+                // 如果点击达到5次
+                if (noClickCount >= maxClicks) {
+                    // 隐藏"不可以"按钮
+                    noWrapper.style.opacity = '0';
+                    noWrapper.style.transform = 'scale(0.1)';
+                    
+                    // "可以"按钮占据整个容器
+                    setTimeout(() => {
+                        noWrapper.style.display = 'none';
+                        yesWrapper.style.flex = '0 0 100%';
+                        yesWrapper.style.maxWidth = '100%';
+                        
+                        // 放大"可以"按钮到合适大小
+                        setTimeout(() => {
+                            yesBtn.style.transform = 'scale(1.8)';
+                        }, 300);
+                    }, 500);
                 }
             });
+            
+            // 更新点击计数器
+            function updateClickCounter() {
+                clickCounter.textContent = `点击次数: ${noClickCount}/${maxClicks}`;
+                clickCounter.style.background = noClickCount >= 3 ? 
+                    'linear-gradient(to right, #ff9a9e, #fad0c4)' : 
+                    'rgba(255, 255, 255, 0.8)';
+            }
             
             // 创建爱心函数
             function createHearts(count) {
@@ -317,7 +385,7 @@
                     heart.innerHTML = '❤️';
                     heart.style.left = Math.random() * 95 + 'vw';
                     heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
-                    heart.style.fontSize = (30 + Math.random() * 50) + 'px';
+                    heart.style.fontSize = (20 + Math.random() * 40) + 'px';
                     heart.style.opacity = 0.7 + Math.random() * 0.3;
                     heartsContainer.appendChild(heart);
                     
@@ -329,6 +397,20 @@
                     }, 8000);
                 }
             }
+            
+            // 添加抖动动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0% { transform: translateX(0) scale(0.8); }
+                    20% { transform: translateX(-15px) scale(0.8); }
+                    40% { transform: translateX(15px) scale(0.8); }
+                    60% { transform: translateX(-10px) scale(0.8); }
+                    80% { transform: translateX(10px) scale(0.8); }
+                    100% { transform: translateX(0) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
