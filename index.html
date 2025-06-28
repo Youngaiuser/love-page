@@ -51,6 +51,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             max-width: 500px;
             margin: 0 auto;
+            display: none; /* 初始隐藏 */
         }
         
         .question {
@@ -164,7 +165,7 @@
         <div class="ip-address" id="ipAddress">192.168.❤️.520</div>
         
         <!-- 问题区域（默认隐藏） -->
-        <div class="question-box hidden" id="questionBox">
+        <div class="question-box" id="questionBox">
             <div class="question">可以做我女朋友吗？</div>
             <div class="buttons">
                 <button class="btn btn-yes" id="yesBtn">可 以</button>
@@ -190,10 +191,14 @@
             const resultBox = document.getElementById('resultBox');
             const heartsContainer = document.getElementById('heartsContainer');
             
+            // 初始状态：只显示IP地址
+            questionBox.style.display = 'none';
+            resultBox.style.display = 'none';
+            
             // 点击IP显示问题
             ipAddress.addEventListener('click', function() {
-                ipAddress.classList.add('hidden');
-                questionBox.classList.remove('hidden');
+                ipAddress.style.display = 'none';
+                questionBox.style.display = 'block';
                 createHearts(10);
             });
             
@@ -205,7 +210,6 @@
                 
                 // 添加庆祝效果
                 setTimeout(() => {
-                    resultBox.classList.add('visible');
                     createHearts(50);
                     
                     // 持续创建爱心
@@ -228,7 +232,4 @@
                 
                 // 移动位置
                 noBtn.style.position = 'absolute';
-                noBtn.style.left = newX + 'px';
-                noBtn.style.top = newY + 'px';
-                
-              
+                noBt
